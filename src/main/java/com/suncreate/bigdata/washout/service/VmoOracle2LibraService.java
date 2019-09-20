@@ -59,6 +59,10 @@ public class VmoOracle2LibraService {
         _saved = 0;
     }
 
+    public void setPageSkip(int ps) {
+        _lastpage = ps;
+    }
+
     private long _totalelement = 0;
     private int _lastpage = 0;
     private int _totalpage = 0;
