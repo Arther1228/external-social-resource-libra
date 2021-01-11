@@ -25,8 +25,8 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactory",
-        transactionManagerRef = "transactionManager",
+        entityManagerFactoryRef = "oracleEntityManagerFactory",
+        transactionManagerRef = "oracleTransactionManager",
         // 【1】这里写的是DAO层的路径 ，如果你的DAO放在 com.xx.DAO下面，则这里写成 com.xx.DAO
         basePackages = {"com.suncreate.bigdata.washout.repository.oracle"}
 )
@@ -46,7 +46,7 @@ public class OracleConfig {
     }
 
     @Primary
-    @Bean(name = "entityManagerFactory") 
+    @Bean(name = "oracleEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean
     entityManagerFactory(
             EntityManagerFactoryBuilder builder,
@@ -56,17 +56,16 @@ public class OracleConfig {
                 hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(),new HibernateSettings());
         return builder
                 .dataSource(dataSource)
-                .packages("com.suncreate.bigdata.washout.model.oracle") // 【3】这里是实体类的包路径
-                .persistenceUnit("oracle") // 这里写成唯一的就可以了，具体我也不太明白 ，希望有人告知
-                  // 【4】
+                .packages("com.suncreate.bigdata.washout.model.oracle")
+                .persistenceUnit("oracle")
                 .properties(properties)
                 .build();
     }
 
     @Primary
-    @Bean(name = "transactionManager") 
+    @Bean(name = "oracleTransactionManager")
     public PlatformTransactionManager transactionManager(
-            @Qualifier("entityManagerFactory") EntityManagerFactory
+            @Qualifier("oracleEntityManagerFactory") EntityManagerFactory
                     entityManagerFactory
     ) {
         return new JpaTransactionManager(entityManagerFactory);
