@@ -60,7 +60,7 @@ public class SocialResourceMysql2LibraService {
         }
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<ComXqMysql> comXqMysqlPage = comXqMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime")), startTime);
+            Page<ComXqMysql> comXqMysqlPage = comXqMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), 0);
             log.info("query from mysql by time " + startTime.toString() + " , got total page: " + comXqMysqlPage.getTotalPages() + " , total element: " + comXqMysqlPage.getTotalElements());
 
@@ -118,7 +118,7 @@ public class SocialResourceMysql2LibraService {
         }
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<ComDictMysql> comDictMysqlPage = comDictMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime")), startTime);
+            Page<ComDictMysql> comDictMysqlPage = comDictMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), 0);
             log.info("query from mysql by time " + startTime.toString() + " , got total page: " + comDictMysqlPage.getTotalPages() + " , total element: " + comDictMysqlPage.getTotalElements());
 
