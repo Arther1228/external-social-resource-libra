@@ -60,14 +60,14 @@ public class SocialResourceMysql2LibraService {
         }
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<ComXqMysql> comXqMysqlPage = comXqMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
+            Page<ComXqMysql> mysqlPage = comXqMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), 0);
-            log.info("query from mysql by time " + startTime.toString() + " , got total page: " + comXqMysqlPage.getTotalPages() + " , total element: " + comXqMysqlPage.getTotalElements());
+            log.info("query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
 
             List<ComXqLibra> targetList = new ArrayList<>();
-            while (null != comXqMysqlPage && comXqMysqlPage.getSize() != 0) {
-                log.info("ComXq page: " + comXqMysqlPage.getPageable().getPageNumber() + "/" + comXqMysqlPage.getTotalPages());
-                List<ComXqMysql> originList = comXqMysqlPage.getContent();
+            while (null != mysqlPage && mysqlPage.getSize() != 0) {
+                log.info("ComXq page: " + mysqlPage.getPageable().getPageNumber() + "/" + mysqlPage.getTotalPages());
+                List<ComXqMysql> originList = mysqlPage.getContent();
                 log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), originList.size());
                 targetList.clear();
                 for (ComXqMysql origin : originList) {
@@ -91,7 +91,7 @@ public class SocialResourceMysql2LibraService {
                     log2ES_info(ProcPhase.store.toString(), ProcStatus.fail.toString(), 1);
                     log.error("ComXq save to libra failed. error: " + ex.getMessage());
                 }
-                comXqMysqlPage = comXqMysqlRepository.findAll(comXqMysqlPage.nextPageable(), startTime);
+                mysqlPage = comXqMysqlRepository.findAll(mysqlPage.nextPageable(), startTime);
             }
         } catch (Exception ee) {
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.fail.toString(), 1);
@@ -118,14 +118,14 @@ public class SocialResourceMysql2LibraService {
         }
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<ComDictMysql> comDictMysqlPage = comDictMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
+            Page<ComDictMysql> mysqlPage = comDictMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), 0);
-            log.info("query from mysql by time " + startTime.toString() + " , got total page: " + comDictMysqlPage.getTotalPages() + " , total element: " + comDictMysqlPage.getTotalElements());
+            log.info("query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
 
             List<ComDictLibra> targetList = new ArrayList<>();
-            while (null != comDictMysqlPage && comDictMysqlPage.getSize() != 0) {
-                log.info("ComXq page: " + comDictMysqlPage.getPageable().getPageNumber() + "/" + comDictMysqlPage.getTotalPages());
-                List<ComDictMysql> originList = comDictMysqlPage.getContent();
+            while (null != mysqlPage && mysqlPage.getSize() != 0) {
+                log.info("ComXq page: " + mysqlPage.getPageable().getPageNumber() + "/" + mysqlPage.getTotalPages());
+                List<ComDictMysql> originList = mysqlPage.getContent();
                 log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), originList.size());
                 targetList.clear();
                 for (ComDictMysql origin : originList) {
@@ -149,7 +149,7 @@ public class SocialResourceMysql2LibraService {
                     log2ES_info(ProcPhase.store.toString(), ProcStatus.fail.toString(), 1);
                     log.error("ComXq save to libra failed. error: " + ex.getMessage());
                 }
-                comDictMysqlPage = comDictMysqlRepository.findAll(comDictMysqlPage.nextPageable(), startTime);
+                mysqlPage = comDictMysqlRepository.findAll(mysqlPage.nextPageable(), startTime);
             }
         } catch (Exception ee) {
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.fail.toString(), 1);
