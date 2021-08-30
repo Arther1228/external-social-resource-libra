@@ -29,7 +29,7 @@ public class CompleteScheduleConfig implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         // 每5分钟更新
-        taskRegistrar.addTriggerTask(() -> socialResourceMysql2LibraService.moveComXq(), triggerContext -> new CronTrigger(cronQuarter).nextExecutionTime(triggerContext));
+        taskRegistrar.addTriggerTask(() -> socialResourceMysql2LibraService.updateCommunityTables(), triggerContext -> new CronTrigger(cronQuarter).nextExecutionTime(triggerContext));
     }
 
 }

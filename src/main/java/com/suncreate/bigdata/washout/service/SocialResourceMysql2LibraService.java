@@ -50,11 +50,11 @@ public class SocialResourceMysql2LibraService {
 
     }
 
-    public <T, S> void syncTable(BaseServerInterface libra, Class<T> mysqlClass, Class<S> libraClass, String name) {
+    public <T, S> void syncTable(BaseServerInterface baseServer, Class<T> mysqlClass, Class<S> libraClass, String name) {
         // 从libra读取最新一条数据的时间戳
         Timestamp startTime = new Timestamp(0);
         try {
-            Timestamp lastTime = libra.findMaxTime();
+            Timestamp lastTime = baseServer.findMaxTime();
             if (lastTime != null) {
                 startTime = lastTime;
             }
@@ -66,7 +66,7 @@ public class SocialResourceMysql2LibraService {
 
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<T> mysqlPage = libra.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
+            Page<T> mysqlPage = baseServer.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), 0);
             log.info("table: " + name + " query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
 
@@ -89,13 +89,13 @@ public class SocialResourceMysql2LibraService {
                 }
                 // 批量保存目标实体
                 try {
-                    libra.saveAll(targetList);
+                    baseServer.saveAll(targetList);
                     log2ES_info(ProcPhase.store.toString(), ProcStatus.suc.toString(), targetList.size());
                 } catch (Exception ex) {
                     log2ES_info(ProcPhase.store.toString(), ProcStatus.fail.toString(), 1);
                     log.error("table: " + name + " save to libra failed. error: " + ex.getMessage());
                 }
-                mysqlPage = libra.findAll(mysqlPage.nextPageable(), startTime);
+                mysqlPage = baseServer.findAll(mysqlPage.nextPageable(), startTime);
             }
         } catch (Exception ee) {
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.fail.toString(), 1);

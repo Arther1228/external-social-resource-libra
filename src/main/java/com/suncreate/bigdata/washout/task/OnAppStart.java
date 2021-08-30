@@ -20,6 +20,6 @@ public class OnAppStart implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.debug("app start runner ...");
-        socialResourceMysql2LibraService.moveComXq();
+        socialResourceMysql2LibraService.updateCommunityTables();
     }
 }
