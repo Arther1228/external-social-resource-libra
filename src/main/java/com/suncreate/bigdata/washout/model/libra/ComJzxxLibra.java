@@ -9,15 +9,16 @@ import java.util.Date;
 @Entity
 @Table(name = "com_jzxx", schema = "vision_if", catalog = "shiny")
 public class ComJzxxLibra {
+    @Id
     private String id;
-    private String appkey;
+    @Column(name = "appkey")
+    private String appKey;
     private String fwbm;
     private String yhzgxdm;
     private String glryid;
+    @Column(name = "addtime")
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -26,16 +27,14 @@ public class ComJzxxLibra {
         this.id = id;
     }
 
-    @Column(name = "appkey")
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
     }
 
-    @Column(name = "fwbm")
     public String getFwbm() {
         return fwbm;
     }
@@ -44,7 +43,6 @@ public class ComJzxxLibra {
         this.fwbm = fwbm;
     }
 
-    @Column(name = "yhzgxdm")
     public String getYhzgxdm() {
         return yhzgxdm;
     }
@@ -53,7 +51,6 @@ public class ComJzxxLibra {
         this.yhzgxdm = yhzgxdm;
     }
 
-    @Column(name = "glryid")
     public String getGlryid() {
         return glryid;
     }
@@ -62,7 +59,6 @@ public class ComJzxxLibra {
         this.glryid = glryid;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }
@@ -70,5 +66,6 @@ public class ComJzxxLibra {
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
     }
+
 }
 

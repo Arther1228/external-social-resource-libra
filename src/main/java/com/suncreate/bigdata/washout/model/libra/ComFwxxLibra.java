@@ -9,8 +9,10 @@ import java.util.Date;
 @Entity
 @Table(name = "com_fwxx", schema = "vision_if", catalog = "shiny")
 public class ComFwxxLibra {
+    @Id
     private String id;
-    private String appkey;
+    @Column(name = "appkey")
+    private String appKey;
     private String xqbm;
     private String ldbm;
     private String fwbm;
@@ -22,10 +24,9 @@ public class ComFwxxLibra {
     private String cqxzdm;
     private String fwmj;
     private String bz;
+    @Column(name = "addtime")
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -34,16 +35,14 @@ public class ComFwxxLibra {
         this.id = id;
     }
 
-    @Column(name = "appkey")
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
     }
 
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -52,7 +51,6 @@ public class ComFwxxLibra {
         this.xqbm = xqbm;
     }
 
-    @Column(name = "ldbm")
     public String getLdbm() {
         return ldbm;
     }
@@ -61,7 +59,6 @@ public class ComFwxxLibra {
         this.ldbm = ldbm;
     }
 
-    @Column(name = "fwbm")
     public String getFwbm() {
         return fwbm;
     }
@@ -70,7 +67,6 @@ public class ComFwxxLibra {
         this.fwbm = fwbm;
     }
 
-    @Column(name = "dyh")
     public String getDyh() {
         return dyh;
     }
@@ -79,7 +75,6 @@ public class ComFwxxLibra {
         this.dyh = dyh;
     }
 
-    @Column(name = "mph")
     public String getMph() {
         return mph;
     }
@@ -88,7 +83,6 @@ public class ComFwxxLibra {
         this.mph = mph;
     }
 
-    @Column(name = "fwztdm")
     public String getFwztdm() {
         return fwztdm;
     }
@@ -97,7 +91,6 @@ public class ComFwxxLibra {
         this.fwztdm = fwztdm;
     }
 
-    @Column(name = "lch")
     public String getLch() {
         return lch;
     }
@@ -106,7 +99,6 @@ public class ComFwxxLibra {
         this.lch = lch;
     }
 
-    @Column(name = "fwytdm")
     public String getFwytdm() {
         return fwytdm;
     }
@@ -115,7 +107,6 @@ public class ComFwxxLibra {
         this.fwytdm = fwytdm;
     }
 
-    @Column(name = "cqxzdm")
     public String getCqxzdm() {
         return cqxzdm;
     }
@@ -124,7 +115,6 @@ public class ComFwxxLibra {
         this.cqxzdm = cqxzdm;
     }
 
-    @Column(name = "fwmj")
     public String getFwmj() {
         return fwmj;
     }
@@ -133,7 +123,6 @@ public class ComFwxxLibra {
         this.fwmj = fwmj;
     }
 
-    @Column(name = "bz")
     public String getBz() {
         return bz;
     }
@@ -142,7 +131,6 @@ public class ComFwxxLibra {
         this.bz = bz;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

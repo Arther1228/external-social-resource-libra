@@ -2,20 +2,13 @@ package com.suncreate.bigdata.washout.service;
 
 import com.google.gson.Gson;
 import com.suncreate.bigdata.washout.baseinfo.BaseServerInterface;
-import com.suncreate.bigdata.washout.model.libra.ComDictLibra;
-import com.suncreate.bigdata.washout.model.libra.ComJzxxLibra;
-import com.suncreate.bigdata.washout.model.libra.ComOrgLibra;
-import com.suncreate.bigdata.washout.model.libra.ComXqLibra;
-import com.suncreate.bigdata.washout.model.mysql.ComDictMysql;
-import com.suncreate.bigdata.washout.model.mysql.ComFwxxMysql;
-import com.suncreate.bigdata.washout.model.mysql.ComJzxxMysql;
-import com.suncreate.bigdata.washout.model.mysql.ComXqMysql;
+import com.suncreate.bigdata.washout.model.libra.*;
+import com.suncreate.bigdata.washout.model.mysql.*;
 import com.suncreate.bigdata.washout.repository.libra.ComOrgLibraRepository;
 import com.suncreate.bigdata.washout.repository.mysql.ComFwxxMysqlRepository;
+import com.suncreate.bigdata.washout.repository.mysql.ComRkxxMysqlRepository;
 import com.suncreate.bigdata.washout.repository.mysql.ComXqMysqlRepository;
-import com.suncreate.bigdata.washout.server.ComDictServer;
-import com.suncreate.bigdata.washout.server.ComJzxxServer;
-import com.suncreate.bigdata.washout.server.ComXqServer;
+import com.suncreate.bigdata.washout.server.*;
 import com.suncreate.logback.elasticsearch.metric.*;
 import com.suncreate.logback.elasticsearch.util.MetricUtil;
 import org.apache.commons.lang.StringUtils;
@@ -43,6 +36,15 @@ public class SocialResourceMysql2LibraService {
     private static final Logger log = LoggerFactory.getLogger(SocialResourceMysql2LibraService.class);
 
     @Autowired
+    ComXqMysqlRepository comXqMysqlRepository;
+
+    @Autowired
+    ComOrgLibraRepository comOrgLibraRepository;
+
+    @Autowired
+    ComFwxxMysqlRepository comFwxxMysqlRepository;
+
+    @Autowired
     ComDictServer comDictServer;
 
     @Autowired
@@ -52,13 +54,16 @@ public class SocialResourceMysql2LibraService {
     ComXqServer comXqServer;
 
     @Autowired
-    ComXqMysqlRepository comXqMysqlRepository;
+    ComRkxxServer comRkxxServer;
 
     @Autowired
-    ComOrgLibraRepository comOrgLibraRepository;
+    ComldxxServer comldxxServer;
 
     @Autowired
-    ComFwxxMysqlRepository comFwxxMysqlRepository;
+    ComClxxServer comClxxServer;
+
+    @Autowired
+    ComFwxxServer comFwxxServer;
 
     /**
      * 同步小区相关表
@@ -66,11 +71,14 @@ public class SocialResourceMysql2LibraService {
     public void updateCommunityTables() {
         System.out.println("-------------------------同步小区表开始时间：" + dateFormat.format(new Date()) + "-------------------------");
 
+        syncTable(comRkxxServer, ComRkxxMysql.class, ComRkxxLibra.class, "人口信息表");
         syncTable(comXqServer, ComXqMysql.class, ComXqLibra.class, "智慧社区表");
-        //syncTable(comDictServer, ComDictMysql.class, ComDictLibra.class, "数据字典表");
-        //syncTable(comJzxxServer, ComJzxxMysql.class, ComJzxxLibra.class, "建筑信息表");
-
-        //syncComOrgTable();
+        syncTable(comDictServer, ComDictMysql.class, ComDictLibra.class, "数据字典表");
+        syncTable(comJzxxServer, ComJzxxMysql.class, ComJzxxLibra.class, "建筑信息表");
+        syncTable(comldxxServer, ComldxxMysql.class, ComldxxLibra.class, "楼栋信息表");
+        syncTable(comClxxServer, ComClxxMysql.class, ComClxxLibra.class, "车辆信息表");
+        syncTable(comFwxxServer, ComFwxxMysql.class, ComFwxxLibra.class, "房屋信息表");
+        syncComOrgTable();
     }
 
     /**
@@ -112,7 +120,6 @@ public class SocialResourceMysql2LibraService {
                     // 从原始实体向目标实体copy数据
                     try {
                         BeanUtils.copyProperties(origin, target);
-                        log2ES_info(ProcPhase.clear.toString(), ProcStatus.suc.toString(), 1);
                     } catch (Exception ec) {
                         log2ES_info(ProcPhase.clear.toString(), ProcStatus.fail.toString(), 1);
                         log.error("table: " + name + " properties copy failed. pk=" + origin.toString() + " error: " + ec.getMessage());

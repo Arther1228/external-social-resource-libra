@@ -9,7 +9,9 @@ import java.util.Date;
 @Entity
 @Table(name = "com_ldxx", schema = "vision_if", catalog = "shiny")
 public class ComldxxLibra {
+    @Id
     private String id;
+    @Column(name = "appkey")
     private String appKey;
     private String xqbm;
     private String ldbm;
@@ -19,10 +21,9 @@ public class ComldxxLibra {
     private String jd;
     private String wd;
     private String hs;
+    @Column(name = "addtime")
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -31,7 +32,6 @@ public class ComldxxLibra {
         this.id = id;
     }
 
-    @Column(name = "appkey")
     public String getAppKey() {
         return appKey;
     }
@@ -40,7 +40,6 @@ public class ComldxxLibra {
         this.appKey = appKey;
     }
 
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -49,7 +48,6 @@ public class ComldxxLibra {
         this.xqbm = xqbm;
     }
 
-    @Column(name = "ldbm")
     public String getLdbm() {
         return ldbm;
     }
@@ -58,7 +56,6 @@ public class ComldxxLibra {
         this.ldbm = ldbm;
     }
 
-    @Column(name = "ldh")
     public String getLdh() {
         return ldh;
     }
@@ -67,7 +64,6 @@ public class ComldxxLibra {
         this.ldh = ldh;
     }
 
-    @Column(name = "dys")
     public String getDys() {
         return dys;
     }
@@ -76,7 +72,6 @@ public class ComldxxLibra {
         this.dys = dys;
     }
 
-    @Column(name = "lcs")
     public String getLcs() {
         return lcs;
     }
@@ -85,7 +80,6 @@ public class ComldxxLibra {
         this.lcs = lcs;
     }
 
-    @Column(name = "jd")
     public String getJd() {
         return jd;
     }
@@ -94,7 +88,6 @@ public class ComldxxLibra {
         this.jd = jd;
     }
 
-    @Column(name = "wd")
     public String getWd() {
         return wd;
     }
@@ -103,7 +96,6 @@ public class ComldxxLibra {
         this.wd = wd;
     }
 
-    @Column(name = "hs")
     public String getHs() {
         return hs;
     }
@@ -112,7 +104,6 @@ public class ComldxxLibra {
         this.hs = hs;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

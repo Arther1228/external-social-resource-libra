@@ -6,12 +6,16 @@ import java.util.Date;
 @Entity
 @Table(name = "com_clxx", schema = "vision_if", catalog = "shiny")
 public class ComClxxLibra {
+    @Id
     private String id;
-    private String appkey;
+    @Column(name = "appkey")
+    private String appKey;
     private String cphm;
     private String xqbm;
     private String czxm;
+    @Column(name = "czsfzjhm")
     private String czSfzjhm;
+    @Column(name = "czsjhm")
     private String czSjhm;
     private String hplxdm;
     private String hpysdm;
@@ -19,10 +23,9 @@ public class ComClxxLibra {
     private String clppdm;
     private String cllxdm;
     private String bz;
+    @Column(name = "addtime")
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -31,16 +34,14 @@ public class ComClxxLibra {
         this.id = id;
     }
 
-    @Column(name = "appkey")
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
     }
 
-    @Column(name = "cphm")
     public String getCphm() {
         return cphm;
     }
@@ -49,7 +50,6 @@ public class ComClxxLibra {
         this.cphm = cphm;
     }
 
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -58,7 +58,6 @@ public class ComClxxLibra {
         this.xqbm = xqbm;
     }
 
-    @Column(name = "czxm")
     public String getCzxm() {
         return czxm;
     }
@@ -67,7 +66,6 @@ public class ComClxxLibra {
         this.czxm = czxm;
     }
 
-    @Column(name = "czsfzjhm")
     public String getCzSfzjhm() {
         return czSfzjhm;
     }
@@ -76,7 +74,6 @@ public class ComClxxLibra {
         this.czSfzjhm = czSfzjhm;
     }
 
-    @Column(name = "czsjhm")
     public String getCzSjhm() {
         return czSjhm;
     }
@@ -85,7 +82,6 @@ public class ComClxxLibra {
         this.czSjhm = czSjhm;
     }
 
-    @Column(name = "hplxdm")
     public String getHplxdm() {
         return hplxdm;
     }
@@ -94,7 +90,6 @@ public class ComClxxLibra {
         this.hplxdm = hplxdm;
     }
 
-    @Column(name = "hpysdm")
     public String getHpysdm() {
         return hpysdm;
     }
@@ -103,7 +98,6 @@ public class ComClxxLibra {
         this.hpysdm = hpysdm;
     }
 
-    @Column(name = "csysdm")
     public String getCsysdm() {
         return csysdm;
     }
@@ -112,7 +106,6 @@ public class ComClxxLibra {
         this.csysdm = csysdm;
     }
 
-    @Column(name = "clppdm")
     public String getClppdm() {
         return clppdm;
     }
@@ -121,7 +114,6 @@ public class ComClxxLibra {
         this.clppdm = clppdm;
     }
 
-    @Column(name = "cllxdm")
     public String getCllxdm() {
         return cllxdm;
     }
@@ -130,7 +122,6 @@ public class ComClxxLibra {
         this.cllxdm = cllxdm;
     }
 
-    @Column(name = "bz")
     public String getBz() {
         return bz;
     }
@@ -139,7 +130,6 @@ public class ComClxxLibra {
         this.bz = bz;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

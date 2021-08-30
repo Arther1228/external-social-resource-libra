@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "com_dict")
 public class ComDictMysql {
+    @Id
     private String id;
     private String dictCode;
     private String dictClass;
@@ -21,8 +22,6 @@ public class ComDictMysql {
     private String project;
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -31,8 +30,6 @@ public class ComDictMysql {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "dictcode")
     public String getDictCode() {
         return dictCode;
     }
@@ -41,8 +38,6 @@ public class ComDictMysql {
         this.dictCode = dictCode;
     }
 
-    @Basic
-    @Column(name = "dictclass")
     public String getDictClass() {
         return dictClass;
     }
@@ -51,8 +46,6 @@ public class ComDictMysql {
         this.dictClass = dictClass;
     }
 
-    @Basic
-    @Column(name = "dicttypename")
     public String getDictTypeName() {
         return dictTypeName;
     }
@@ -61,8 +54,6 @@ public class ComDictMysql {
         this.dictTypeName = dictTypeName;
     }
 
-    @Basic
-    @Column(name = "dicttypevalue")
     public String getDictTypeValue() {
         return dictTypeValue;
     }
@@ -71,8 +62,6 @@ public class ComDictMysql {
         this.dictTypeValue = dictTypeValue;
     }
 
-    @Basic
-    @Column(name = "dictsource")
     public String getDictSource() {
         return dictSource;
     }
@@ -81,8 +70,6 @@ public class ComDictMysql {
         this.dictSource = dictSource;
     }
 
-    @Basic
-    @Column(name = "project")
     public String getProject() {
         return project;
     }
@@ -91,8 +78,6 @@ public class ComDictMysql {
         this.project = project;
     }
 
-    @Basic
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }
@@ -100,6 +85,4 @@ public class ComDictMysql {
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
     }
-
-
 }

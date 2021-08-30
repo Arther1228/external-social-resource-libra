@@ -6,7 +6,6 @@
  */
 package com.suncreate.bigdata.washout.model.mysql;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,8 +14,9 @@ import java.util.Date;
 @Entity
 @Table(name = "com_fwxx")
 public class ComFwxxMysql {
+    @Id
     private String id;
-    private String appkey;
+    private String appKey;
     private String xqbm;
     private String ldbm;
     private String fwbm;
@@ -30,8 +30,6 @@ public class ComFwxxMysql {
     private String bz;
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -40,16 +38,14 @@ public class ComFwxxMysql {
         this.id = id;
     }
 
-    @Column(name = "appkey")
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
     }
 
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -58,7 +54,6 @@ public class ComFwxxMysql {
         this.xqbm = xqbm;
     }
 
-    @Column(name = "ldbm")
     public String getLdbm() {
         return ldbm;
     }
@@ -67,7 +62,6 @@ public class ComFwxxMysql {
         this.ldbm = ldbm;
     }
 
-    @Column(name = "fwbm")
     public String getFwbm() {
         return fwbm;
     }
@@ -76,7 +70,6 @@ public class ComFwxxMysql {
         this.fwbm = fwbm;
     }
 
-    @Column(name = "dyh")
     public String getDyh() {
         return dyh;
     }
@@ -85,7 +78,6 @@ public class ComFwxxMysql {
         this.dyh = dyh;
     }
 
-    @Column(name = "mph")
     public String getMph() {
         return mph;
     }
@@ -94,7 +86,6 @@ public class ComFwxxMysql {
         this.mph = mph;
     }
 
-    @Column(name = "fwztdm")
     public String getFwztdm() {
         return fwztdm;
     }
@@ -103,7 +94,6 @@ public class ComFwxxMysql {
         this.fwztdm = fwztdm;
     }
 
-    @Column(name = "lch")
     public String getLch() {
         return lch;
     }
@@ -112,7 +102,6 @@ public class ComFwxxMysql {
         this.lch = lch;
     }
 
-    @Column(name = "fwytdm")
     public String getFwytdm() {
         return fwytdm;
     }
@@ -121,7 +110,6 @@ public class ComFwxxMysql {
         this.fwytdm = fwytdm;
     }
 
-    @Column(name = "cqxzdm")
     public String getCqxzdm() {
         return cqxzdm;
     }
@@ -130,7 +118,6 @@ public class ComFwxxMysql {
         this.cqxzdm = cqxzdm;
     }
 
-    @Column(name = "fwmj")
     public String getFwmj() {
         return fwmj;
     }
@@ -139,7 +126,6 @@ public class ComFwxxMysql {
         this.fwmj = fwmj;
     }
 
-    @Column(name = "bz")
     public String getBz() {
         return bz;
     }
@@ -148,7 +134,6 @@ public class ComFwxxMysql {
         this.bz = bz;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

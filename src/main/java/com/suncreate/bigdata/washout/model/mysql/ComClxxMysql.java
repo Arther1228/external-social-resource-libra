@@ -12,8 +12,9 @@ import java.util.Date;
 @Entity
 @Table(name = "com_clxx")
 public class ComClxxMysql {
+    @Id
     private String id;
-    private String appkey;
+    private String appKey;
     private String cphm;
     private String xqbm;
     private String czxm;
@@ -27,8 +28,6 @@ public class ComClxxMysql {
     private String bz;
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -37,16 +36,14 @@ public class ComClxxMysql {
         this.id = id;
     }
 
-    @Column(name = "appkey")
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
     }
 
-    @Column(name = "cphm")
     public String getCphm() {
         return cphm;
     }
@@ -55,7 +52,6 @@ public class ComClxxMysql {
         this.cphm = cphm;
     }
 
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -64,7 +60,6 @@ public class ComClxxMysql {
         this.xqbm = xqbm;
     }
 
-    @Column(name = "czxm")
     public String getCzxm() {
         return czxm;
     }
@@ -73,7 +68,6 @@ public class ComClxxMysql {
         this.czxm = czxm;
     }
 
-    @Column(name = "czsfzjhm")
     public String getCzSfzjhm() {
         return czSfzjhm;
     }
@@ -82,7 +76,6 @@ public class ComClxxMysql {
         this.czSfzjhm = czSfzjhm;
     }
 
-    @Column(name = "czsjhm")
     public String getCzSjhm() {
         return czSjhm;
     }
@@ -91,7 +84,6 @@ public class ComClxxMysql {
         this.czSjhm = czSjhm;
     }
 
-    @Column(name = "hplxdm")
     public String getHplxdm() {
         return hplxdm;
     }
@@ -100,7 +92,6 @@ public class ComClxxMysql {
         this.hplxdm = hplxdm;
     }
 
-    @Column(name = "hpysdm")
     public String getHpysdm() {
         return hpysdm;
     }
@@ -109,7 +100,6 @@ public class ComClxxMysql {
         this.hpysdm = hpysdm;
     }
 
-    @Column(name = "csysdm")
     public String getCsysdm() {
         return csysdm;
     }
@@ -118,7 +108,6 @@ public class ComClxxMysql {
         this.csysdm = csysdm;
     }
 
-    @Column(name = "clppdm")
     public String getClppdm() {
         return clppdm;
     }
@@ -127,7 +116,6 @@ public class ComClxxMysql {
         this.clppdm = clppdm;
     }
 
-    @Column(name = "cllxdm")
     public String getCllxdm() {
         return cllxdm;
     }
@@ -136,7 +124,6 @@ public class ComClxxMysql {
         this.cllxdm = cllxdm;
     }
 
-    @Column(name = "bz")
     public String getBz() {
         return bz;
     }
@@ -145,7 +132,6 @@ public class ComClxxMysql {
         this.bz = bz;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

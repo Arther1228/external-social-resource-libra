@@ -6,17 +6,22 @@ import java.util.Date;
 @Entity
 @Table(name = "com_dict", schema = "vision_if", catalog = "shiny")
 public class ComDictLibra {
+    @Id
     private String id;
+    @Column(name = "dictcode")
     private String dictCode;
+    @Column(name = "dictclass")
     private String dictClass;
+    @Column(name = "dicttypename")
     private String dictTypeName;
+    @Column(name = "dicttypevalue")
     private String dictTypeValue;
+    @Column(name = "dictsource")
     private String dictSource;
     private String project;
+    @Column(name = "addtime")
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -25,8 +30,6 @@ public class ComDictLibra {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "dictcode")
     public String getDictCode() {
         return dictCode;
     }
@@ -35,8 +38,6 @@ public class ComDictLibra {
         this.dictCode = dictCode;
     }
 
-    @Basic
-    @Column(name = "dictclass")
     public String getDictClass() {
         return dictClass;
     }
@@ -45,8 +46,6 @@ public class ComDictLibra {
         this.dictClass = dictClass;
     }
 
-    @Basic
-    @Column(name = "dicttypename")
     public String getDictTypeName() {
         return dictTypeName;
     }
@@ -55,8 +54,6 @@ public class ComDictLibra {
         this.dictTypeName = dictTypeName;
     }
 
-    @Basic
-    @Column(name = "dicttypevalue")
     public String getDictTypeValue() {
         return dictTypeValue;
     }
@@ -65,8 +62,6 @@ public class ComDictLibra {
         this.dictTypeValue = dictTypeValue;
     }
 
-    @Basic
-    @Column(name = "dictsource")
     public String getDictSource() {
         return dictSource;
     }
@@ -75,8 +70,6 @@ public class ComDictLibra {
         this.dictSource = dictSource;
     }
 
-    @Basic
-    @Column(name = "project")
     public String getProject() {
         return project;
     }
@@ -85,8 +78,6 @@ public class ComDictLibra {
         this.project = project;
     }
 
-    @Basic
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

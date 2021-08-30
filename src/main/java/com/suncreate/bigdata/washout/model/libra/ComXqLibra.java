@@ -6,10 +6,13 @@ import java.util.Date;
 @Entity
 @Table(name = "com_xq", schema = "vision_if", catalog = "shiny")
 public class ComXqLibra {
+    @Id
     private String id;
+    @Column(name = "appkey")
     private String appKey;
     private String xqbm;
     private String xqmc;
+    @Column(name = "ssqxzqhdm")
     private String ssqXzqhdm;
     private String gajgjgdm;
     private String sqdm;
@@ -28,10 +31,9 @@ public class ComXqLibra {
     private String zdmj;
     private String bz;
     private String jzmj;
+    @Column(name = "addtime")
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -40,8 +42,6 @@ public class ComXqLibra {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "appkey")
     public String getAppKey() {
         return appKey;
     }
@@ -50,8 +50,6 @@ public class ComXqLibra {
         this.appKey = appKey;
     }
 
-    @Basic
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -60,8 +58,6 @@ public class ComXqLibra {
         this.xqbm = xqbm;
     }
 
-    @Basic
-    @Column(name = "xqmc")
     public String getXqmc() {
         return xqmc;
     }
@@ -70,8 +66,6 @@ public class ComXqLibra {
         this.xqmc = xqmc;
     }
 
-    @Basic
-    @Column(name = "ssqxzqhdm")
     public String getSsqXzqhdm() {
         return ssqXzqhdm;
     }
@@ -80,8 +74,6 @@ public class ComXqLibra {
         this.ssqXzqhdm = ssqXzqhdm;
     }
 
-    @Basic
-    @Column(name = "gajgjgdm")
     public String getGajgjgdm() {
         return gajgjgdm;
     }
@@ -90,8 +82,6 @@ public class ComXqLibra {
         this.gajgjgdm = gajgjgdm;
     }
 
-    @Basic
-    @Column(name = "sqdm")
     public String getSqdm() {
         return sqdm;
     }
@@ -100,8 +90,6 @@ public class ComXqLibra {
         this.sqdm = sqdm;
     }
 
-    @Basic
-    @Column(name = "xxdz")
     public String getXxdz() {
         return xxdz;
     }
@@ -110,8 +98,6 @@ public class ComXqLibra {
         this.xxdz = xxdz;
     }
 
-    @Basic
-    @Column(name = "wymc")
     public String getWymc() {
         return wymc;
     }
@@ -120,8 +106,6 @@ public class ComXqLibra {
         this.wymc = wymc;
     }
 
-    @Basic
-    @Column(name = "jd")
     public String getJd() {
         return jd;
     }
@@ -130,8 +114,6 @@ public class ComXqLibra {
         this.jd = jd;
     }
 
-    @Basic
-    @Column(name = "wd")
     public String getWd() {
         return wd;
     }
@@ -140,8 +122,7 @@ public class ComXqLibra {
         this.wd = wd;
     }
 
-    @Basic
-    @Column(name = "dtzbj")
+
     public String getDtzbj() {
         return dtzbj;
     }
@@ -150,8 +131,6 @@ public class ComXqLibra {
         this.dtzbj = dtzbj;
     }
 
-    @Basic
-    @Column(name = "tp")
     public String getTp() {
         return tp;
     }
@@ -160,8 +139,6 @@ public class ComXqLibra {
         this.tp = tp;
     }
 
-    @Basic
-    @Column(name = "jscj")
     public String getJscj() {
         return jscj;
     }
@@ -170,8 +147,6 @@ public class ComXqLibra {
         this.jscj = jscj;
     }
 
-    @Basic
-    @Column(name = "fzr")
     public String getFzr() {
         return fzr;
     }
@@ -180,8 +155,6 @@ public class ComXqLibra {
         this.fzr = fzr;
     }
 
-    @Basic
-    @Column(name = "lxdh")
     public String getLxdh() {
         return lxdh;
     }
@@ -190,8 +163,6 @@ public class ComXqLibra {
         this.lxdh = lxdh;
     }
 
-    @Basic
-    @Column(name = "jyxm")
     public String getJyxm() {
         return jyxm;
     }
@@ -200,8 +171,6 @@ public class ComXqLibra {
         this.jyxm = jyxm;
     }
 
-    @Basic
-    @Column(name = "jybh")
     public String getJybh() {
         return jybh;
     }
@@ -210,8 +179,6 @@ public class ComXqLibra {
         this.jybh = jybh;
     }
 
-    @Basic
-    @Column(name = "jylxfs")
     public String getJylxfs() {
         return jylxfs;
     }
@@ -220,8 +187,6 @@ public class ComXqLibra {
         this.jylxfs = jylxfs;
     }
 
-    @Basic
-    @Column(name = "zdmj")
     public String getZdmj() {
         return zdmj;
     }
@@ -230,8 +195,6 @@ public class ComXqLibra {
         this.zdmj = zdmj;
     }
 
-    @Basic
-    @Column(name = "bz")
     public String getBz() {
         return bz;
     }
@@ -240,8 +203,6 @@ public class ComXqLibra {
         this.bz = bz;
     }
 
-    @Basic
-    @Column(name = "jzmj")
     public String getJzmj() {
         return jzmj;
     }
@@ -250,8 +211,6 @@ public class ComXqLibra {
         this.jzmj = jzmj;
     }
 
-    @Basic
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

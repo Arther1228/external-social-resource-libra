@@ -6,7 +6,6 @@
  */
 package com.suncreate.bigdata.washout.model.mysql;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,15 +14,14 @@ import java.util.Date;
 @Entity
 @Table(name = "com_jzxx")
 public class ComJzxxMysql {
+    @Id
     private String id;
-    private String appkey;
+    private String appKey;
     private String fwbm;
     private String yhzgxdm;
     private String glryid;
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -32,16 +30,14 @@ public class ComJzxxMysql {
         this.id = id;
     }
 
-    @Column(name = "appkey")
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
     }
 
-    @Column(name = "fwbm")
     public String getFwbm() {
         return fwbm;
     }
@@ -50,7 +46,6 @@ public class ComJzxxMysql {
         this.fwbm = fwbm;
     }
 
-    @Column(name = "yhzgxdm")
     public String getYhzgxdm() {
         return yhzgxdm;
     }
@@ -59,7 +54,6 @@ public class ComJzxxMysql {
         this.yhzgxdm = yhzgxdm;
     }
 
-    @Column(name = "glryid")
     public String getGlryid() {
         return glryid;
     }
@@ -68,7 +62,6 @@ public class ComJzxxMysql {
         this.glryid = glryid;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

@@ -6,7 +6,6 @@
  */
 package com.suncreate.bigdata.washout.model.mysql;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,15 +14,16 @@ import java.util.Date;
 @Entity
 @Table(name = "com_rkxx")
 public class ComRkxxMysql {
+    @Id
     private String id;
-    private String appkey;
+    private String appKey;
     private String xqbm;
     private String xm;
     private String xbdm;
     private String zjlxdm;
     private String zjhm;
     private String sjhm;
-    private String ryzp;
+    private String ryZp;
     private String rklxdm;
     private String csrq;
     private String zzmmdm;
@@ -42,11 +42,8 @@ public class ComRkxxMysql {
     private String hyzkdm;
     private String  byzkdm;
     private String bz;
-
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -55,16 +52,14 @@ public class ComRkxxMysql {
         this.id = id;
     }
 
-    @Column(name = "appkey")
-    public String getAppkey() {
-        return appkey;
+    public String getAppKey() {
+        return appKey;
     }
 
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
     }
 
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -73,7 +68,6 @@ public class ComRkxxMysql {
         this.xqbm = xqbm;
     }
 
-    @Column(name = "xm")
     public String getXm() {
         return xm;
     }
@@ -82,7 +76,6 @@ public class ComRkxxMysql {
         this.xm = xm;
     }
 
-    @Column(name = "xbdm")
     public String getXbdm() {
         return xbdm;
     }
@@ -91,7 +84,6 @@ public class ComRkxxMysql {
         this.xbdm = xbdm;
     }
 
-    @Column(name = "zjlxdm")
     public String getZjlxdm() {
         return zjlxdm;
     }
@@ -100,7 +92,6 @@ public class ComRkxxMysql {
         this.zjlxdm = zjlxdm;
     }
 
-    @Column(name = "zjhm")
     public String getZjhm() {
         return zjhm;
     }
@@ -109,7 +100,6 @@ public class ComRkxxMysql {
         this.zjhm = zjhm;
     }
 
-    @Column(name = "sjhm")
     public String getSjhm() {
         return sjhm;
     }
@@ -118,16 +108,14 @@ public class ComRkxxMysql {
         this.sjhm = sjhm;
     }
 
-    @Column(name = "ryzp")
-    public String getRyzp() {
-        return ryzp;
+    public String getRyZp() {
+        return ryZp;
     }
 
-    public void setRyzp(String ryzp) {
-        this.ryzp = ryzp;
+    public void setRyZp(String ryZp) {
+        this.ryZp = ryZp;
     }
 
-    @Column(name = "rklxdm")
     public String getRklxdm() {
         return rklxdm;
     }
@@ -136,7 +124,6 @@ public class ComRkxxMysql {
         this.rklxdm = rklxdm;
     }
 
-    @Column(name = "csrq")
     public String getCsrq() {
         return csrq;
     }
@@ -145,7 +132,6 @@ public class ComRkxxMysql {
         this.csrq = csrq;
     }
 
-    @Column(name = "zzmmdm")
     public String getZzmmdm() {
         return zzmmdm;
     }
@@ -154,7 +140,6 @@ public class ComRkxxMysql {
         this.zzmmdm = zzmmdm;
     }
 
-    @Column(name = "yxqqsrq")
     public String getYxqqsrq() {
         return yxqqsrq;
     }
@@ -163,7 +148,6 @@ public class ComRkxxMysql {
         this.yxqqsrq = yxqqsrq;
     }
 
-    @Column(name = "yxqjzrq")
     public String getYxqjzrq() {
         return yxqjzrq;
     }
@@ -172,7 +156,6 @@ public class ComRkxxMysql {
         this.yxqjzrq = yxqjzrq;
     }
 
-    @Column(name = "zjzp")
     public String getZjzp() {
         return zjzp;
     }
@@ -181,7 +164,6 @@ public class ComRkxxMysql {
         this.zjzp = zjzp;
     }
 
-    @Column(name = "jgdm")
     public String getJgdm() {
         return jgdm;
     }
@@ -190,7 +172,6 @@ public class ComRkxxMysql {
         this.jgdm = jgdm;
     }
 
-    @Column(name = "zjdxz")
     public String getZjdxz() {
         return zjdxz;
     }
@@ -199,7 +180,6 @@ public class ComRkxxMysql {
         this.zjdxz = zjdxz;
     }
 
-    @Column(name = "hjdxz")
     public String getHjdxz() {
         return hjdxz;
     }
@@ -208,7 +188,6 @@ public class ComRkxxMysql {
         this.hjdxz = hjdxz;
     }
 
-    @Column(name = "gjdm")
     public String getGjdm() {
         return gjdm;
     }
@@ -217,7 +196,6 @@ public class ComRkxxMysql {
         this.gjdm = gjdm;
     }
 
-    @Column(name = "ywx")
     public String getYwx() {
         return ywx;
     }
@@ -226,7 +204,6 @@ public class ComRkxxMysql {
         this.ywx = ywx;
     }
 
-    @Column(name = "ywm")
     public String getYwm() {
         return ywm;
     }
@@ -235,7 +212,6 @@ public class ComRkxxMysql {
         this.ywm = ywm;
     }
 
-    @Column(name = "mzdm")
     public String getMzdm() {
         return mzdm;
     }
@@ -244,7 +220,6 @@ public class ComRkxxMysql {
         this.mzdm = mzdm;
     }
 
-    @Column(name = "zjxydm")
     public String getZjxydm() {
         return zjxydm;
     }
@@ -253,7 +228,6 @@ public class ComRkxxMysql {
         this.zjxydm = zjxydm;
     }
 
-    @Column(name = "whcddm")
     public String getWhcddm() {
         return whcddm;
     }
@@ -262,7 +236,6 @@ public class ComRkxxMysql {
         this.whcddm = whcddm;
     }
 
-    @Column(name = "hyzkdm")
     public String getHyzkdm() {
         return hyzkdm;
     }
@@ -271,7 +244,6 @@ public class ComRkxxMysql {
         this.hyzkdm = hyzkdm;
     }
 
-    @Column(name = "byzkdm")
     public String getByzkdm() {
         return byzkdm;
     }
@@ -280,7 +252,6 @@ public class ComRkxxMysql {
         this.byzkdm = byzkdm;
     }
 
-    @Column(name = "bz")
     public String getBz() {
         return bz;
     }
@@ -289,7 +260,6 @@ public class ComRkxxMysql {
         this.bz = bz;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

@@ -6,6 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "com_xq")
 public class ComXqMysql {
+    @Id
     private String id;
     private String appKey;
     private String xqbm;
@@ -30,8 +31,6 @@ public class ComXqMysql {
     private String jzmj;
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -40,8 +39,6 @@ public class ComXqMysql {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "appkey")
     public String getAppKey() {
         return appKey;
     }
@@ -50,8 +47,6 @@ public class ComXqMysql {
         this.appKey = appKey;
     }
 
-    @Basic
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -60,8 +55,6 @@ public class ComXqMysql {
         this.xqbm = xqbm;
     }
 
-    @Basic
-    @Column(name = "xqmc")
     public String getXqmc() {
         return xqmc;
     }
@@ -70,8 +63,6 @@ public class ComXqMysql {
         this.xqmc = xqmc;
     }
 
-    @Basic
-    @Column(name = "ssqxzqhdm")
     public String getSsqXzqhdm() {
         return ssqXzqhdm;
     }
@@ -80,8 +71,6 @@ public class ComXqMysql {
         this.ssqXzqhdm = ssqXzqhdm;
     }
 
-    @Basic
-    @Column(name = "gajgjgdm")
     public String getGajgjgdm() {
         return gajgjgdm;
     }
@@ -90,8 +79,6 @@ public class ComXqMysql {
         this.gajgjgdm = gajgjgdm;
     }
 
-    @Basic
-    @Column(name = "sqdm")
     public String getSqdm() {
         return sqdm;
     }
@@ -100,8 +87,6 @@ public class ComXqMysql {
         this.sqdm = sqdm;
     }
 
-    @Basic
-    @Column(name = "xxdz")
     public String getXxdz() {
         return xxdz;
     }
@@ -110,8 +95,6 @@ public class ComXqMysql {
         this.xxdz = xxdz;
     }
 
-    @Basic
-    @Column(name = "wymc")
     public String getWymc() {
         return wymc;
     }
@@ -120,8 +103,6 @@ public class ComXqMysql {
         this.wymc = wymc;
     }
 
-    @Basic
-    @Column(name = "jd")
     public String getJd() {
         return jd;
     }
@@ -130,8 +111,6 @@ public class ComXqMysql {
         this.jd = jd;
     }
 
-    @Basic
-    @Column(name = "wd")
     public String getWd() {
         return wd;
     }
@@ -140,8 +119,6 @@ public class ComXqMysql {
         this.wd = wd;
     }
 
-    @Basic
-    @Column(name = "dtzbj")
     public String getDtzbj() {
         return dtzbj;
     }
@@ -150,8 +127,6 @@ public class ComXqMysql {
         this.dtzbj = dtzbj;
     }
 
-    @Basic
-    @Column(name = "tp")
     public String getTp() {
         return tp;
     }
@@ -160,8 +135,6 @@ public class ComXqMysql {
         this.tp = tp;
     }
 
-    @Basic
-    @Column(name = "jscj")
     public String getJscj() {
         return jscj;
     }
@@ -170,8 +143,6 @@ public class ComXqMysql {
         this.jscj = jscj;
     }
 
-    @Basic
-    @Column(name = "fzr")
     public String getFzr() {
         return fzr;
     }
@@ -180,8 +151,6 @@ public class ComXqMysql {
         this.fzr = fzr;
     }
 
-    @Basic
-    @Column(name = "lxdh")
     public String getLxdh() {
         return lxdh;
     }
@@ -190,8 +159,6 @@ public class ComXqMysql {
         this.lxdh = lxdh;
     }
 
-    @Basic
-    @Column(name = "jyxm")
     public String getJyxm() {
         return jyxm;
     }
@@ -200,8 +167,6 @@ public class ComXqMysql {
         this.jyxm = jyxm;
     }
 
-    @Basic
-    @Column(name = "jybh")
     public String getJybh() {
         return jybh;
     }
@@ -210,8 +175,6 @@ public class ComXqMysql {
         this.jybh = jybh;
     }
 
-    @Basic
-    @Column(name = "jylxfs")
     public String getJylxfs() {
         return jylxfs;
     }
@@ -220,8 +183,6 @@ public class ComXqMysql {
         this.jylxfs = jylxfs;
     }
 
-    @Basic
-    @Column(name = "zdmj")
     public String getZdmj() {
         return zdmj;
     }
@@ -230,8 +191,6 @@ public class ComXqMysql {
         this.zdmj = zdmj;
     }
 
-    @Basic
-    @Column(name = "bz")
     public String getBz() {
         return bz;
     }
@@ -240,8 +199,6 @@ public class ComXqMysql {
         this.bz = bz;
     }
 
-    @Basic
-    @Column(name = "jzmj")
     public String getJzmj() {
         return jzmj;
     }
@@ -250,8 +207,6 @@ public class ComXqMysql {
         this.jzmj = jzmj;
     }
 
-    @Basic
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }

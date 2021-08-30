@@ -6,7 +6,6 @@
  */
 package com.suncreate.bigdata.washout.model.mysql;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,6 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "com_ldxx")
 public class ComldxxMysql {
+    @Id
     private String id;
     private String appKey;
     private String xqbm;
@@ -27,8 +27,6 @@ public class ComldxxMysql {
     private String hs;
     private Date addTime;
 
-    @Id
-    @Column(name = "id")
     public String getId() {
         return id;
     }
@@ -37,7 +35,6 @@ public class ComldxxMysql {
         this.id = id;
     }
 
-    @Column(name = "appkey")
     public String getAppKey() {
         return appKey;
     }
@@ -46,7 +43,6 @@ public class ComldxxMysql {
         this.appKey = appKey;
     }
 
-    @Column(name = "xqbm")
     public String getXqbm() {
         return xqbm;
     }
@@ -55,7 +51,6 @@ public class ComldxxMysql {
         this.xqbm = xqbm;
     }
 
-    @Column(name = "ldbm")
     public String getLdbm() {
         return ldbm;
     }
@@ -64,7 +59,6 @@ public class ComldxxMysql {
         this.ldbm = ldbm;
     }
 
-    @Column(name = "ldh")
     public String getLdh() {
         return ldh;
     }
@@ -73,7 +67,6 @@ public class ComldxxMysql {
         this.ldh = ldh;
     }
 
-    @Column(name = "dys")
     public String getDys() {
         return dys;
     }
@@ -82,7 +75,6 @@ public class ComldxxMysql {
         this.dys = dys;
     }
 
-    @Column(name = "lcs")
     public String getLcs() {
         return lcs;
     }
@@ -91,7 +83,6 @@ public class ComldxxMysql {
         this.lcs = lcs;
     }
 
-    @Column(name = "jd")
     public String getJd() {
         return jd;
     }
@@ -100,7 +91,6 @@ public class ComldxxMysql {
         this.jd = jd;
     }
 
-    @Column(name = "wd")
     public String getWd() {
         return wd;
     }
@@ -109,7 +99,6 @@ public class ComldxxMysql {
         this.wd = wd;
     }
 
-    @Column(name = "hs")
     public String getHs() {
         return hs;
     }
@@ -118,7 +107,6 @@ public class ComldxxMysql {
         this.hs = hs;
     }
 
-    @Column(name = "addtime")
     public Date getAddTime() {
         return addTime;
     }
