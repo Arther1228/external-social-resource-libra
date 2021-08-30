@@ -56,11 +56,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -103,16 +103,16 @@
         </dependency>
 
         <!-- mysql -->
-        <dependency>
+<!--        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+<!--        <dependency>
             <groupId>com.huawei.libra</groupId>
             <artifactId>gsjdbc4</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
