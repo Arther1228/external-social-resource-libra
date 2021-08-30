@@ -1,14 +1,13 @@
 package com.suncreate.bigdata.washout.service;
 
 import com.google.gson.Gson;
+import com.suncreate.bigdata.washout.baseinfo.BaseServerInterface;
 import com.suncreate.bigdata.washout.model.libra.ComDictLibra;
-import com.suncreate.bigdata.washout.model.libra.ComXqLibra;
+import com.suncreate.bigdata.washout.model.libra.ComJzxxLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComDictMysql;
-import com.suncreate.bigdata.washout.model.mysql.ComXqMysql;
-import com.suncreate.bigdata.washout.repository.libra.ComDictLibraRepository;
-import com.suncreate.bigdata.washout.repository.libra.ComXqLibraRepository;
-import com.suncreate.bigdata.washout.repository.mysql.ComDictMysqlRepository;
-import com.suncreate.bigdata.washout.repository.mysql.ComXqMysqlRepository;
+import com.suncreate.bigdata.washout.model.mysql.ComJzxxMysql;
+import com.suncreate.bigdata.washout.server.ComDictServer;
+import com.suncreate.bigdata.washout.server.ComJzxxServer;
 import com.suncreate.logback.elasticsearch.metric.*;
 import com.suncreate.logback.elasticsearch.util.MetricUtil;
 import org.slf4j.Logger;
@@ -21,35 +20,41 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class SocialResourceMysql2LibraService {
 
-    @Autowired
-    ComXqLibraRepository comXqLibraRepository;
-
-    @Autowired
-    ComXqMysqlRepository comXqMysqlRepository;
-
-    @Autowired
-    ComDictLibraRepository comDictLibraRepository;
-
-    @Autowired
-    ComDictMysqlRepository comDictMysqlRepository;
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private static final Logger log = LoggerFactory.getLogger(SocialResourceMysql2LibraService.class);
 
+    @Autowired
+    ComDictServer comDictServer;
+
+    @Autowired
+    ComJzxxServer comJzxxServer;
+
     /**
-     * 同步小区静态数据
+     * 同步小区相关表
      */
-    public void moveComXq() {
-        Timestamp startTime = new Timestamp(0);
+    public void updateCommunityTables() {
+        System.out.println("-------------------------同步小区表开始时间：" + dateFormat.format(new Date()) + "-------------------------");
+
+        //syncTable(comDictServer, ComDictMysql.class, ComDictLibra.class, "数据字典表");
+        syncTable(comJzxxServer, ComJzxxMysql.class, ComJzxxLibra.class, "建筑信息表");
+
+    }
+
+    public <T, S> void syncTable(BaseServerInterface libra, Class<T> mysqlClass, Class<S> libraClass, String name) {
         // 从libra读取最新一条数据的时间戳
+        Timestamp startTime = new Timestamp(0);
         try {
-            Timestamp lastTime = comXqLibraRepository.findMaxTime();
+            Timestamp lastTime = libra.findMaxTime();
             if (lastTime != null) {
                 startTime = lastTime;
             }
@@ -58,104 +63,46 @@ public class SocialResourceMysql2LibraService {
             log.error("get libra latest time fail. " + e.getMessage());
             log2ES_info("check", ProcStatus.fail.toString(), 1);
         }
+
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<ComXqMysql> mysqlPage = comXqMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
+            Page<T> mysqlPage = libra.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), 0);
-            log.info("query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
+            log.info("table: " + name + " query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
 
-            List<ComXqLibra> targetList = new ArrayList<>();
+            List<S> targetList = new ArrayList<>();
             while (null != mysqlPage && mysqlPage.getSize() != 0) {
-                log.info("ComXq page: " + mysqlPage.getPageable().getPageNumber() + "/" + mysqlPage.getTotalPages());
-                List<ComXqMysql> originList = mysqlPage.getContent();
-                log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), originList.size());
+                List<T> originList = mysqlPage.getContent();
                 targetList.clear();
-                for (ComXqMysql origin : originList) {
-                    ComXqLibra target = new ComXqLibra();
+                for (T origin : originList) {
+                    S target = libraClass.newInstance();
                     // 从原始实体向目标实体copy数据
                     try {
                         BeanUtils.copyProperties(origin, target);
                         log2ES_info(ProcPhase.clear.toString(), ProcStatus.suc.toString(), 1);
                     } catch (Exception ec) {
                         log2ES_info(ProcPhase.clear.toString(), ProcStatus.fail.toString(), 1);
-                        log.error("ComXq properties copy failed. pk=" + origin.getId() + " error: " + ec.getMessage());
+                        log.error("table: " + name + " properties copy failed. pk=" + origin.toString() + " error: " + ec.getMessage());
                     }
                     // 暂存目标实体
                     targetList.add(target);
                 }
                 // 批量保存目标实体
                 try {
-                    comXqLibraRepository.saveAll(targetList);
+                    libra.saveAll(targetList);
                     log2ES_info(ProcPhase.store.toString(), ProcStatus.suc.toString(), targetList.size());
                 } catch (Exception ex) {
                     log2ES_info(ProcPhase.store.toString(), ProcStatus.fail.toString(), 1);
-                    log.error("ComXq save to libra failed. error: " + ex.getMessage());
+                    log.error("table: " + name + " save to libra failed. error: " + ex.getMessage());
                 }
-                mysqlPage = comXqMysqlRepository.findAll(mysqlPage.nextPageable(), startTime);
+                mysqlPage = libra.findAll(mysqlPage.nextPageable(), startTime);
             }
         } catch (Exception ee) {
             log2ES_info(ProcPhase.collect.toString(), ProcStatus.fail.toString(), 1);
-            log.error("ComXq query mysql failed. error: " + ee.getMessage());
+            log.error("table: " + name + " query mysql failed. error: " + ee.getMessage());
         }
     }
 
-
-    /**
-     * 同步数据字典静态数据
-     */
-    public void moveComDict() {
-        Timestamp startTime = new Timestamp(0);
-        // 从libra读取最新一条数据的时间戳
-        try {
-            Timestamp lastTime = comDictLibraRepository.findMaxTime();
-            if (lastTime != null) {
-                startTime = lastTime;
-            }
-            log2ES_info("check", ProcStatus.suc.toString(), 1);
-        } catch (Exception e) {
-            log.error("get libra latest time fail. " + e.getMessage());
-            log2ES_info("check", ProcStatus.fail.toString(), 1);
-        }
-        // 根据libra中最新时间戳从原始mysql分页取数据
-        try {
-            Page<ComDictMysql> mysqlPage = comDictMysqlRepository.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
-            log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), 0);
-            log.info("query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
-
-            List<ComDictLibra> targetList = new ArrayList<>();
-            while (null != mysqlPage && mysqlPage.getSize() != 0) {
-                log.info("ComXq page: " + mysqlPage.getPageable().getPageNumber() + "/" + mysqlPage.getTotalPages());
-                List<ComDictMysql> originList = mysqlPage.getContent();
-                log2ES_info(ProcPhase.collect.toString(), ProcStatus.suc.toString(), originList.size());
-                targetList.clear();
-                for (ComDictMysql origin : originList) {
-                    ComDictLibra target = new ComDictLibra();
-                    // 从原始实体向目标实体copy数据
-                    try {
-                        BeanUtils.copyProperties(origin, target);
-                        log2ES_info(ProcPhase.clear.toString(), ProcStatus.suc.toString(), 1);
-                    } catch (Exception ec) {
-                        log2ES_info(ProcPhase.clear.toString(), ProcStatus.fail.toString(), 1);
-                        log.error("ComXq properties copy failed. pk=" + origin.getId() + " error: " + ec.getMessage());
-                    }
-                    // 暂存目标实体
-                    targetList.add(target);
-                }
-                // 批量保存目标实体
-                try {
-                    comDictLibraRepository.saveAll(targetList);
-                    log2ES_info(ProcPhase.store.toString(), ProcStatus.suc.toString(), targetList.size());
-                } catch (Exception ex) {
-                    log2ES_info(ProcPhase.store.toString(), ProcStatus.fail.toString(), 1);
-                    log.error("ComXq save to libra failed. error: " + ex.getMessage());
-                }
-                mysqlPage = comDictMysqlRepository.findAll(mysqlPage.nextPageable(), startTime);
-            }
-        } catch (Exception ee) {
-            log2ES_info(ProcPhase.collect.toString(), ProcStatus.fail.toString(), 1);
-            log.error("ComXq query mysql failed. error: " + ee.getMessage());
-        }
-    }
 
     private void log2ES_info(String procPhase, String procStatus, Integer count) {
         HashMap<String, Object> logMap;
