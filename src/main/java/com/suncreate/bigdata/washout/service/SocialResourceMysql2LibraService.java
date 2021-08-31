@@ -5,9 +5,8 @@ import com.suncreate.bigdata.washout.baseinfo.BaseServerInterface;
 import com.suncreate.bigdata.washout.model.libra.*;
 import com.suncreate.bigdata.washout.model.mysql.*;
 import com.suncreate.bigdata.washout.repository.libra.ComOrgLibraRepository;
-import com.suncreate.bigdata.washout.repository.mysql.ComFwxxMysqlRepository;
-import com.suncreate.bigdata.washout.repository.mysql.ComRkxxMysqlRepository;
 import com.suncreate.bigdata.washout.repository.mysql.ComXqMysqlRepository;
+import com.suncreate.bigdata.washout.repository.mysql.ComldxxMysqlRepository;
 import com.suncreate.bigdata.washout.server.*;
 import com.suncreate.logback.elasticsearch.metric.*;
 import com.suncreate.logback.elasticsearch.util.MetricUtil;
@@ -42,7 +41,7 @@ public class SocialResourceMysql2LibraService {
     ComOrgLibraRepository comOrgLibraRepository;
 
     @Autowired
-    ComFwxxMysqlRepository comFwxxMysqlRepository;
+    ComldxxMysqlRepository comldxxMysqlRepository;
 
     @Autowired
     ComDictServer comDictServer;
@@ -71,13 +70,13 @@ public class SocialResourceMysql2LibraService {
     public void updateCommunityTables() {
         System.out.println("-------------------------同步小区表开始时间：" + dateFormat.format(new Date()) + "-------------------------");
 
-        syncTable(comRkxxServer, ComRkxxMysql.class, ComRkxxLibra.class, "人口信息表");
-        syncTable(comXqServer, ComXqMysql.class, ComXqLibra.class, "智慧社区表");
-        syncTable(comDictServer, ComDictMysql.class, ComDictLibra.class, "数据字典表");
-        syncTable(comJzxxServer, ComJzxxMysql.class, ComJzxxLibra.class, "建筑信息表");
-        syncTable(comldxxServer, ComldxxMysql.class, ComldxxLibra.class, "楼栋信息表");
-        syncTable(comClxxServer, ComClxxMysql.class, ComClxxLibra.class, "车辆信息表");
-        syncTable(comFwxxServer, ComFwxxMysql.class, ComFwxxLibra.class, "房屋信息表");
+//        syncTable(comRkxxServer, ComRkxxMysql.class, ComRkxxLibra.class, "人口信息表");
+//        syncTable(comXqServer, ComXqMysql.class, ComXqLibra.class, "智慧社区表");
+//        syncTable(comDictServer, ComDictMysql.class, ComDictLibra.class, "数据字典表");
+//        syncTable(comJzxxServer, ComJzxxMysql.class, ComJzxxLibra.class, "建筑信息表");
+//        syncTable(comldxxServer, ComldxxMysql.class, ComldxxLibra.class, "楼栋信息表");
+//        syncTable(comClxxServer, ComClxxMysql.class, ComClxxLibra.class, "车辆信息表");
+//        syncTable(comFwxxServer, ComFwxxMysql.class, ComFwxxLibra.class, "房屋信息表");
         syncComOrgTable();
     }
 
@@ -171,13 +170,14 @@ public class SocialResourceMysql2LibraService {
                 for (ComXqMysql origin : originList) {
                     //查询所有的房屋
                     if (StringUtils.isNotBlank(origin.getXqbm())) {
-                        List<ComFwxxMysql> fwList = comFwxxMysqlRepository.findByXqbm(origin.getXqbm());
-                        for (ComFwxxMysql comFwxxMysql : fwList) {
+                        List<ComldxxMysql> ldxxList = comldxxMysqlRepository.findByXqbm(origin.getXqbm());
+                        for (ComldxxMysql comldxxMysql : ldxxList) {
                             ComOrgLibra target = new ComOrgLibra();
                             target.setSsqxzqhdm(origin.getSsqXzqhdm());
+                            target.setXqmc(origin.getXqmc());
                             target.setXqbm(origin.getXqbm());
-                            target.setLdbm(comFwxxMysql.getLdbm());
-                            target.setFwbm(comFwxxMysql.getFwbm());
+                            target.setLdbm(comldxxMysql.getLdbm());
+                            target.setLdh(comldxxMysql.getLdh());
                             // 暂存目标实体
                             targetList.add(target);
                         }

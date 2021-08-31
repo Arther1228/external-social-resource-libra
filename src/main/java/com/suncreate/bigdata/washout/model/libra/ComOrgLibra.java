@@ -13,8 +13,9 @@ public class ComOrgLibra {
     private String id;
     private String ssqxzqhdm;
     private String xqbm;
+    private String xqmc;
     private String ldbm;
-    private String fwbm;
+    private String ldh;
 
     public String getId() {
         return id;
@@ -40,6 +41,14 @@ public class ComOrgLibra {
         this.xqbm = xqbm;
     }
 
+    public String getXqmc() {
+        return xqmc;
+    }
+
+    public void setXqmc(String xqmc) {
+        this.xqmc = xqmc;
+    }
+
     public String getLdbm() {
         return ldbm;
     }
@@ -48,12 +57,12 @@ public class ComOrgLibra {
         this.ldbm = ldbm;
     }
 
-    public String getFwbm() {
-        return fwbm;
+    public String getLdh() {
+        return ldh;
     }
 
-    public void setFwbm(String fwbm) {
-        this.fwbm = fwbm;
+    public void setLdh(String ldh) {
+        this.ldh = ldh;
     }
 }
 

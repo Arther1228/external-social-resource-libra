@@ -8,11 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public interface ComFwxxMysqlRepository extends JpaRepository<ComFwxxMysql, Long> {
     @Query(value = "select z from ComFwxxMysql z where z.addTime >= :addTime")
     Page<ComFwxxMysql> findAll(Pageable pageable, @Param("addTime") Timestamp startTime);
-
-    List<ComFwxxMysql> findByXqbm(String xqbm);
 }
