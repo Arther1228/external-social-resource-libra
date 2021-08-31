@@ -64,11 +64,19 @@ public class SocialResourceMysql2LibraService {
     @Autowired
     ComFwxxServer comFwxxServer;
 
+    private boolean _lock = false;
+
     /**
      * 同步小区相关表
      */
     public void updateCommunityTables() {
-        System.out.println("-------------------------同步小区表开始时间：" + dateFormat.format(new Date()) + "-------------------------");
+
+        if (_lock) {
+            log.info("processing ... skip");
+            return;
+        }
+        _lock = true;
+        log.info("-----同步小区表开始时间：" + dateFormat.format(new Date()) + "----------");
 
 //        syncTable(comRkxxServer, ComRkxxMysql.class, ComRkxxLibra.class, "人口信息表");
 //        syncTable(comXqServer, ComXqMysql.class, ComXqLibra.class, "智慧社区表");
@@ -77,7 +85,12 @@ public class SocialResourceMysql2LibraService {
 //        syncTable(comldxxServer, ComldxxMysql.class, ComldxxLibra.class, "楼栋信息表");
 //        syncTable(comClxxServer, ComClxxMysql.class, ComClxxLibra.class, "车辆信息表");
 //        syncTable(comFwxxServer, ComFwxxMysql.class, ComFwxxLibra.class, "房屋信息表");
+
         syncComOrgTable();
+
+        _lock = false;
+
+        log.info("-----同步小区表结束时间：" + dateFormat.format(new Date()) + "----------");
     }
 
     /**
