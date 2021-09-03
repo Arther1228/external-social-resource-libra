@@ -6,11 +6,14 @@
  */
 package com.suncreate.bigdata.washout.model.mysql;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "com_jzxx")
 public class ComJzxxMysql {
@@ -22,51 +25,4 @@ public class ComJzxxMysql {
     private String glryid;
     private Date addTime;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getAppKey() {
-        return appKey;
-    }
-
-    public void setAppKey(String appKey) {
-        this.appKey = appKey;
-    }
-
-    public String getFwbm() {
-        return fwbm;
-    }
-
-    public void setFwbm(String fwbm) {
-        this.fwbm = fwbm;
-    }
-
-    public String getYhzgxdm() {
-        return yhzgxdm;
-    }
-
-    public void setYhzgxdm(String yhzgxdm) {
-        this.yhzgxdm = yhzgxdm;
-    }
-
-    public String getGlryid() {
-        return glryid;
-    }
-
-    public void setGlryid(String glryid) {
-        this.glryid = glryid;
-    }
-
-    public Date getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
-    }
 }
