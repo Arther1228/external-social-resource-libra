@@ -1,6 +1,7 @@
 package com.suncreate.bigdata.washout.task;
 
-import com.suncreate.bigdata.washout.service.SocialResourceMysql2LibraService;
+import com.suncreate.bigdata.washout.service.SyncDynamicDataService;
+import com.suncreate.bigdata.washout.service.SyncStaticDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,15 @@ public class OnAppStart implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(OnAppStart.class);
 
     @Autowired
-    private SocialResourceMysql2LibraService socialResourceMysql2LibraService;
+    private SyncStaticDataService syncStaticDataService;
+
+    @Autowired
+    private SyncDynamicDataService syncDynamicDataService;
 
     @Override
     public void run(String... args) throws Exception {
         log.debug("app start runner ...");
-        socialResourceMysql2LibraService.updateCommunityTables();
+        syncStaticDataService.updateCommunityTables();
+        //syncDynamicDataService.updateCommunityTablesToES();
     }
 }

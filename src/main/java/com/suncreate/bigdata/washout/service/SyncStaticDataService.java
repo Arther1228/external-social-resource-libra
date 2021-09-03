@@ -28,11 +28,11 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class SocialResourceMysql2LibraService {
+public class SyncStaticDataService {
 
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    private static final Logger log = LoggerFactory.getLogger(SocialResourceMysql2LibraService.class);
+    private static final Logger log = LoggerFactory.getLogger(SyncStaticDataService.class);
 
     @Autowired
     ComXqMysqlRepository comXqMysqlRepository;
@@ -64,6 +64,15 @@ public class SocialResourceMysql2LibraService {
     @Autowired
     ComFwxxServer comFwxxServer;
 
+    @Autowired
+    ComCldzxxServer comCldzxxServer;
+
+    @Autowired
+    ComZpjServer comZpjServer;
+
+    @Autowired
+    ComMjxtxxServer comMjxtxxServer;
+
     private boolean _lock = false;
 
     /**
@@ -85,8 +94,11 @@ public class SocialResourceMysql2LibraService {
 //        syncTable(comldxxServer, ComldxxMysql.class, ComldxxLibra.class, "楼栋信息表");
 //        syncTable(comClxxServer, ComClxxMysql.class, ComClxxLibra.class, "车辆信息表");
 //        syncTable(comFwxxServer, ComFwxxMysql.class, ComFwxxLibra.class, "房屋信息表");
+//        syncTable(comCldzxxServer, ComCldzxxMysql.class, ComCldzxxLibra.class, "车辆道闸表");
+        syncTable(comZpjServer, ComZpjMysql.class, ComZpjLibra.class, "抓拍机表");
+//        syncTable(comMjxtxxServer, ComMjxtxxMysql.class, ComMjxtxxLibra.class, "门禁系统表");
 
-        syncComOrgTable();
+//          syncComOrgTable();
 
         _lock = false;
 
