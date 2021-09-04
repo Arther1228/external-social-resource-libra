@@ -1,6 +1,5 @@
 package com.suncreate.bigdata.washout.task;
 
-import com.suncreate.bigdata.washout.service.SyncDynamicDataService;
 import com.suncreate.bigdata.washout.service.SyncStaticDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +16,6 @@ public class OnAppStart implements CommandLineRunner {
 
     @Autowired
     private SyncStaticDataService syncStaticDataService;
-
-    @Autowired
-    private SyncDynamicDataService syncDynamicDataService;
 
     @Override
     public void run(String... args) throws Exception {

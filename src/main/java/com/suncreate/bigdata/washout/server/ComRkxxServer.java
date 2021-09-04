@@ -1,6 +1,6 @@
 package com.suncreate.bigdata.washout.server;
 
-import com.suncreate.bigdata.washout.baseinfo.BaseServerInterface;
+import com.suncreate.bigdata.washout.core.BaseServerInterface;
 import com.suncreate.bigdata.washout.model.libra.ComRkxxLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComRkxxMysql;
 import com.suncreate.bigdata.washout.repository.libra.ComRkxxLibraRepository;
