@@ -1,6 +1,5 @@
 package com.suncreate.bigdata.washout.server;
 
-import com.suncreate.bigdata.washout.core.BaseServerInterface;
 import com.suncreate.bigdata.washout.model.libra.ComZpjLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComZpjMysql;
 import com.suncreate.bigdata.washout.repository.libra.ComZpjLibraRepository;
@@ -14,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class ComZpjServer implements BaseServerInterface<ComZpjLibra, ComZpjMysql> {
+public class ComZpjServer implements BaseServer<ComZpjLibra, ComZpjMysql> {
 
     @Autowired
     ComZpjLibraRepository comZpjLibraRepository;

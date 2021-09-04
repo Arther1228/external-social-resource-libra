@@ -1,6 +1,5 @@
 package com.suncreate.bigdata.washout.server;
 
-import com.suncreate.bigdata.washout.core.BaseServerInterface;
 import com.suncreate.bigdata.washout.model.libra.ComFwxxLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComFwxxMysql;
 import com.suncreate.bigdata.washout.repository.libra.ComFwxxLibraRepository;
@@ -14,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class ComFwxxServer implements BaseServerInterface<ComFwxxLibra, ComFwxxMysql> {
+public class ComFwxxServer implements BaseServer<ComFwxxLibra, ComFwxxMysql> {
 
     @Autowired
     ComFwxxLibraRepository comFwxxLibraRepository;

@@ -1,6 +1,5 @@
 package com.suncreate.bigdata.washout.server;
 
-import com.suncreate.bigdata.washout.core.BaseServerInterface;
 import com.suncreate.bigdata.washout.model.libra.ComDictLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComDictMysql;
 import com.suncreate.bigdata.washout.repository.libra.ComDictLibraRepository;
@@ -14,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class ComDictServer implements BaseServerInterface<ComDictLibra, ComDictMysql> {
+public class ComDictServer implements BaseServer<ComDictLibra, ComDictMysql> {
 
     @Autowired
     ComDictLibraRepository comDictLibraRepository;

@@ -1,6 +1,5 @@
 package com.suncreate.bigdata.washout.service;
 
-import com.suncreate.bigdata.washout.core.BaseServerInterface;
 import com.suncreate.bigdata.washout.model.libra.*;
 import com.suncreate.bigdata.washout.model.mysql.*;
 import com.suncreate.bigdata.washout.server.*;
@@ -97,7 +96,7 @@ public class SyncStaticDataService {
      * @param <T>
      * @param <S>
      */
-    public <T, S> void syncTable(BaseServerInterface baseServer, Class<T> mysqlClass, Class<S> libraClass, String name) {
+    public <T, S> void syncTable(BaseServer baseServer, Class<T> mysqlClass, Class<S> libraClass, String name) {
         // 从libra读取最新一条数据的时间戳
         Timestamp startTime = new Timestamp(0);
         try {
