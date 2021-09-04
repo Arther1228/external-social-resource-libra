@@ -1,6 +1,6 @@
 package com.suncreate.bigdata.washout.task;
 
-import com.suncreate.bigdata.washout.service.SyncStaticDataService;
+import com.suncreate.bigdata.washout.server.SyncStaticDataServer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class CompleteScheduleConfig implements SchedulingConfigurer {
     private String cronGenerateQuarter;
 
     @Autowired
-    private SyncStaticDataService syncStaticDataService;
+    private SyncStaticDataServer syncStaticDataServer;
 
     /**
      * 执行定时任务.
@@ -30,7 +30,7 @@ public class CompleteScheduleConfig implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         // 每20分钟更新
-        taskRegistrar.addTriggerTask(() -> syncStaticDataService.updateCommunityTables(), triggerContext -> new CronTrigger(cronStaticQuarter).nextExecutionTime(triggerContext));
+        taskRegistrar.addTriggerTask(() -> syncStaticDataServer.updateCommunityTables(), triggerContext -> new CronTrigger(cronStaticQuarter).nextExecutionTime(triggerContext));
     }
 
 }

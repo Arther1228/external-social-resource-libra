@@ -1,4 +1,4 @@
-package com.suncreate.bigdata.washout.server;
+package com.suncreate.bigdata.washout.service;
 
 import com.suncreate.bigdata.washout.model.libra.ComldxxLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComldxxMysql;
@@ -28,7 +28,7 @@ public class ComldxxServer implements BaseServer<ComldxxLibra, ComldxxMysql> {
 
     @Override
     public Page<ComldxxMysql> findAll(Pageable pageable, Timestamp startTime) {
-        return comldxxMysqlRepository.findAll(pageable, startTime);
+        return comldxxMysqlRepository.findAll(pageable,  startTime);
     }
 
     @Override

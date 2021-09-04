@@ -1,4 +1,4 @@
-package com.suncreate.bigdata.washout.server;
+package com.suncreate.bigdata.washout.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

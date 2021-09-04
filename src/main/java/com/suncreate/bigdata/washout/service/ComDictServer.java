@@ -1,4 +1,4 @@
-package com.suncreate.bigdata.washout.server;
+package com.suncreate.bigdata.washout.service;
 
 import com.suncreate.bigdata.washout.model.libra.ComDictLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComDictMysql;

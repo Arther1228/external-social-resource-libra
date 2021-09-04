@@ -1,4 +1,4 @@
-package com.suncreate.bigdata.washout.server;
+package com.suncreate.bigdata.washout.service;
 
 import com.suncreate.bigdata.washout.model.libra.ComZpjLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComZpjMysql;

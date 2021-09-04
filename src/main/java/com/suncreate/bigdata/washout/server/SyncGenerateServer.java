@@ -1,4 +1,4 @@
-package com.suncreate.bigdata.washout.service;
+package com.suncreate.bigdata.washout.server;
 
 import com.suncreate.bigdata.washout.model.libra.ComOrgLibra;
 import com.suncreate.bigdata.washout.model.mysql.ComXqMysql;
@@ -25,11 +25,11 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SyncGenerateService {
+public class SyncGenerateServer {
 
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    private static final Logger log = LoggerFactory.getLogger(SyncGenerateService.class);
+    private static final Logger log = LoggerFactory.getLogger(SyncGenerateServer.class);
 
     @Autowired
     ComXqMysqlRepository comXqMysqlRepository;
