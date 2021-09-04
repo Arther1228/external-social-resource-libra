@@ -1,4 +1,4 @@
-package com.suncreate.bigdata.washout.core;
+package com.suncreate.bigdata.washout.server;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import java.sql.Timestamp;
 import java.util.List;
 
-public interface BaseServerInterface<T, S> {
+public interface BaseServer<T, S> {
     /**
      * 获取最新的数据时间
      *
