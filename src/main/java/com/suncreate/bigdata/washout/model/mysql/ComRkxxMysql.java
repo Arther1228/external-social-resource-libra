@@ -47,5 +47,6 @@ public class ComRkxxMysql {
     private String  byzkdm;
     private String bz;
     private Date addTime;
+    private Date updateTime;
 
 }

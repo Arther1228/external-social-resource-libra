@@ -29,4 +29,6 @@ public class ComZpjMysql {
     private String glyzh;
     private String glymm;
     private Date addTime;
+    private Date updateTime;
+
 }

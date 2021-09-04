@@ -29,5 +29,6 @@ public class ComldxxMysql {
     private String wd;
     private String hs;
     private Date addTime;
+    private Date updateTime;
 
 }

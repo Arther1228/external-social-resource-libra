@@ -21,5 +21,6 @@ public class ComCldzxxMysql {
     private String crkbm;
     private String tplj;
     private Date addTime;
+    private Date updateTime;
 
 }

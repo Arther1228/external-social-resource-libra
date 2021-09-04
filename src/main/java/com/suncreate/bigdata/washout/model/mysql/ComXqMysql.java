@@ -33,5 +33,6 @@ public class ComXqMysql {
     private String bz;
     private String jzmj;
     private Date addTime;
+    private Date updateTime;
 
 }

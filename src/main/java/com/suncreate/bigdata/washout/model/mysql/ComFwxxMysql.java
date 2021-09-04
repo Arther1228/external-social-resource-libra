@@ -32,5 +32,6 @@ public class ComFwxxMysql {
     private String fwmj;
     private String bz;
     private Date addTime;
+    private Date updateTime;
 
 }

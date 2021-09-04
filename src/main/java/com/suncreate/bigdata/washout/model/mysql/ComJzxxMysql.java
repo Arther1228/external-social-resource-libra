@@ -24,5 +24,6 @@ public class ComJzxxMysql {
     private String yhzgxdm;
     private String glryid;
     private Date addTime;
+    private Date updateTime;
 
 }

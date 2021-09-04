@@ -30,5 +30,6 @@ public class ComClxxMysql {
     private String cllxdm;
     private String bz;
     private Date addTime;
+    private Date updateTime;
 
 }

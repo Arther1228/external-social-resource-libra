@@ -27,5 +27,6 @@ public class ComMjxtxxMysql {
     private String dyh;
     private String crkbm;
     private Date addTime;
+    private Date updateTime;
 
 }
