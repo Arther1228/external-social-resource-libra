@@ -113,7 +113,7 @@ public class SyncStaticDataServer {
 
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<T> mysqlPage = baseServer.findAll(PageRequest.of(0, 1000, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
+            Page<T> mysqlPage = baseServer.findAll(PageRequest.of(0, 1000, Sort.by("addTime", "id")), startTime);
             log.info("table: " + tableName + " query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
 
             List<S> targetList = new ArrayList<>();

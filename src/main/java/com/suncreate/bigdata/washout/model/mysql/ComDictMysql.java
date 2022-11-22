@@ -6,7 +6,10 @@
  */
 package com.suncreate.bigdata.washout.model.mysql;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +17,9 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "com_dict")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ComDictMysql {
     @Id
     private String id;

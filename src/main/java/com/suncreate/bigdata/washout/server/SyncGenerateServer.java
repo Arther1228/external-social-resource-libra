@@ -79,7 +79,7 @@ public class SyncGenerateServer {
         Timestamp startTime = new Timestamp(0);
         // 根据libra中最新时间戳从原始mysql分页取数据
         try {
-            Page<ComXqMysql> mysqlPage = comXqMysqlRepository.findAll(PageRequest.of(0, 1, new Sort(Sort.Direction.ASC, "addTime", "id")), startTime);
+            Page<ComXqMysql> mysqlPage = comXqMysqlRepository.findAll(PageRequest.of(0, 1, Sort.by("addTime", "id")), startTime);
             log.info("query from mysql by time " + startTime.toString() + " , got total page: " + mysqlPage.getTotalPages() + " , total element: " + mysqlPage.getTotalElements());
 
             List<ComOrgLibra> targetList = new ArrayList<>();

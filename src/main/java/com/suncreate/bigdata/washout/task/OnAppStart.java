@@ -20,7 +20,7 @@ public class OnAppStart implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.debug("app start runner ...");
-        syncStaticDataServer.updateCommunityTables();
+        //syncStaticDataServer.updateCommunityTables();
         //syncDynamicDataService.updateCommunityTablesToES();
     }
 }
