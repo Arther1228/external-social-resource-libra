@@ -24,7 +24,6 @@ public class LibraRepositoryImpl<T, ID> implements LibraBaseRepository<T, ID> {
     public void init(){
         entityManager = entityManagerFactory.createEntityManager();
         transaction = entityManager.getTransaction();
-        System.out.println(123);
     }
 
     @Override
