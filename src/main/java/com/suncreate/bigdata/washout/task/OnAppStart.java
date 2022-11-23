@@ -1,6 +1,5 @@
 package com.suncreate.bigdata.washout.task;
 
-import com.suncreate.bigdata.washout.server.SyncStaticDataServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,6 @@ import org.springframework.stereotype.Component;
 public class OnAppStart implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(OnAppStart.class);
-
-    @Autowired
-    private SyncStaticDataServer syncStaticDataServer;
 
     @Override
     public void run(String... args) throws Exception {

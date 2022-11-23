@@ -1,10 +1,10 @@
 package com.suncreate.bigdata.washout.config;
 
-import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         basePackages = "com.suncreate.bigdata.washout.repository.mysql",
-        entityManagerFactoryRef = "mysqlEntityManager",
+        entityManagerFactoryRef = "mysqlLocalContainerEntityManagerFactory",
         transactionManagerRef = "mysqlTransactionManager"
 )
 public class MysqlDataSourceConfig {
@@ -27,11 +27,20 @@ public class MysqlDataSourceConfig {
         this.properties = properties;
     }
 
+    @Primary
     @Bean
+    @ConfigurationProperties("spring.datasource.primary")
+    public DataSource mysqlDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Primary
+    @Bean(name = "mysqlLocalContainerEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean mysqlEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(mysqlDataSource());
         em.setPackagesToScan("com.suncreate.bigdata.washout.model.mysql");
+        em.setPersistenceUnitName("mysqlUnit");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -40,13 +49,8 @@ public class MysqlDataSourceConfig {
         return em;
     }
 
-    @Bean
-    @ConfigurationProperties("spring.datasource.primary")
-    public DataSource mysqlDataSource() {
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
-    }
-
-    @Bean
+    @Primary
+    @Bean(name = "mysqlTransactionManager")
     public PlatformTransactionManager mysqlTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(mysqlEntityManager().getObject());

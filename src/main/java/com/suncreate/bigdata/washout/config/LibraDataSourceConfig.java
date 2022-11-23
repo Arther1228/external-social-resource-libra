@@ -1,6 +1,5 @@
 package com.suncreate.bigdata.washout.config;
 
-import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +15,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         basePackages = "com.suncreate.bigdata.washout.repository.libra",
-        entityManagerFactoryRef = "libraEntityManager",
+        entityManagerFactoryRef = "libraLocalContainerEntityManagerFactory",
         transactionManagerRef = "libraTransactionManager"
 )
 public class LibraDataSourceConfig {
@@ -28,10 +27,17 @@ public class LibraDataSourceConfig {
     }
 
     @Bean
+    @ConfigurationProperties("spring.datasource.secondary")
+    public DataSource libraDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean(name = "libraLocalContainerEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean libraEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(libraDataSource());
         em.setPackagesToScan("com.suncreate.bigdata.washout.model.libra");
+        em.setPersistenceUnitName("libraUnit");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -40,13 +46,7 @@ public class LibraDataSourceConfig {
         return em;
     }
 
-    @Bean
-    @ConfigurationProperties("spring.datasource.secondary")
-    public DataSource libraDataSource() {
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
-    }
-
-    @Bean
+    @Bean(name = "libraTransactionManager")
     public PlatformTransactionManager libraTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(libraEntityManager().getObject());
